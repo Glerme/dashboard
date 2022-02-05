@@ -6,6 +6,8 @@ import { DefaultLayout } from 'layouts/DefaultLayout';
 
 import { ErrorBoundary } from 'components/ErrorBoundary';
 
+import { UserContextProvider } from 'contexts/userContext';
+
 import 'styles/global.scss';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
@@ -14,14 +16,16 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NextJS Starter</title>
+        <title>DashBoard</title>
       </Head>
 
-      <DefaultLayout>
-        <ErrorBoundary>
-          <Component {...pageProps} />
-        </ErrorBoundary>
-      </DefaultLayout>
+      <UserContextProvider>
+        <DefaultLayout>
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
+        </DefaultLayout>
+      </UserContextProvider>
     </>
   );
 };

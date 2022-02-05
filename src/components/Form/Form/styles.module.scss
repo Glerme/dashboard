@@ -1,0 +1,32 @@
+@use 'styles/breakpoints.scss';
+
+.btn-container {
+  display: grid;
+
+  place-items: flex-end;
+  gap: 1rem;
+  align-items: baseline;
+  margin-top: 2.5rem;
+
+  width: 100%;
+
+  @include breakpoints.and-up(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 100%;
+
+    @include breakpoints.and-up(md) {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      grid-column-start: 2;
+    }
+  }
+}

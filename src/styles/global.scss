@@ -1,25 +1,37 @@
 @use './breakpoints';
-@use './colors.scss';
+@use './colors.scss' as *;
+@import './utils/grid.utilities.scss';
 @import './utils/colors.utilities.scss';
 @import './utils/typography.utilities.scss';
 @import '../../node_modules/normalize.css/normalize.css';
 
 :root {
-  --color-white: {$white};
+  --color-white: #{$white};
+  --color-gray50: #{$gray50};
+  --color-gray100: #{$gray100};
+  --color-gray200: #{$gray200};
+  --color-gray300: #{$gray300};
+  --color-gray400: #{$gray400};
+  --color-gray500: #{$gray500};
+  --color-gray600: #{$gray600};
+  --color-gray700: #{$gray700};
+  --color-blue: #{$blue};
+  --color-blue-dark: #{$blueDark};
+  --color-orange: #{$orange};
+  --color-green: #{$green};
+  --color-red: #{$red};
 
-  --color-green: {$green};
-  --color-blue: {$blue};
-  --color-orange: {$orange};
-  --color-red: {$red};
+  --primary: #{$blueDark};
+  --secondary: #{$gray600};
+  --info: #{$blue};
+  --warning: #{$orange};
+  --success: #{$green};
+  --error: #{$red};
 
-  --primary: {$white};
-  --secondary: {$black};
-  --info: {$blue};
-  --warning: {$orange};
-  --error: {$red};
-  --success: {$green};
+  --title: #{$gray700};
+  --text: #{$gray600};
+  --text-light: #{$gray500};
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -52,7 +64,6 @@ html {
 }
 
 body {
-  background: #000111;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -64,4 +75,11 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.centralized-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 }

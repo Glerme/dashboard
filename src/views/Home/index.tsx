@@ -1,5 +1,5 @@
-import { Greetings } from 'components/Greetings';
+import { NewHomeView } from './layouts/new';
+import { ListHomeView } from './layouts/list';
+import { EditHomeView } from './layouts/edit';
 
-export const HomeView: React.FC = () => {
-  return <Greetings />;
-};
+export { ListHomeView, EditHomeView, NewHomeView };

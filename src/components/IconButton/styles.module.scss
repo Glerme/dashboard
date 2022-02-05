@@ -1,0 +1,11 @@
+.icon-button-container {
+  background: transparent;
+  border: 0;
+  font-size: 0;
+  color: var(--color-gray600);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary);
+  }
+}

@@ -11,6 +11,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^0.25.0",
+    "dot-object": "^2.1.4",
+    "lodash": "^4.17.21",
     "next": "^12.0.4",
     "next-compose-plugins": "^2.2.1",
     "normalize.css": "^8.0.1",
@@ -18,9 +21,11 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-is": "^17.0.2",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/dot-object": "^2.1.2",
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.35",
     "@types/sass": "^1.43.0",

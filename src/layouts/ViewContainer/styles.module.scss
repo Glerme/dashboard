@@ -1,0 +1,35 @@
+@use 'styles/breakpoints.scss';
+
+.view-container {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray300);
+  border-radius: 0.313rem;
+  box-shadow: 1px 1px 3px rgba(112, 114, 116, 0.25);
+  padding: 0.675rem;
+
+  @include breakpoints.and-up(md) {
+    padding: 1rem;
+  }
+
+  @include breakpoints.and-up(lg) {
+    padding: 1.75rem;
+  }
+}
+
+.title-container {
+  text-align: center;
+  padding: 1rem 0 2.5rem 0;
+
+  h2 {
+    color: var(--title);
+    font-size: 1.625rem;
+  }
+
+  @include breakpoints.and-up(md) {
+    text-align: left;
+  }
+
+  @include breakpoints.and-up(lg) {
+    padding: 1rem 0 3rem 0;
+  }
+}

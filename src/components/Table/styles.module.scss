@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'styles/typography.scss';
+
+.table-section-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.filter-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.remove-filter-button {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: map.get(typography.$sizes, 'caption');
+  font-weight: map.get(typography.$weights, 'caption');
+}

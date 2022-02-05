@@ -1,0 +1,32 @@
+.breadcrumb-list {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.breadcrumb-item {
+  list-style: none;
+  color: var(--title);
+  font-size: 1.875rem;
+  font-weight: 600;
+
+  &:not(:last-child)::after {
+    content: '|';
+    margin-left: 0.3rem;
+  }
+
+  &:last-child {
+    color: var(--text-light);
+  }
+
+  &:first-child {
+    color: var(--title);
+  }
+
+  a {
+    color: inherit;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.error-message-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  color: var(--error);
+  margin-top: 0.3rem;
+}
