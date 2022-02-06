@@ -15,10 +15,6 @@ type TableProps<T> = {
   items: T[];
   columns: Column<T>[];
   sortColumn?: SortColumn<T> | null;
-  pagination: {
-    page: number;
-    perPage: number;
-  };
   filterComponent?: (props: {
     onFilter: (filter: Record<string, any>) => void;
     onCancel: () => void;
@@ -33,11 +29,8 @@ export const Table = <T,>({
   items,
   getId,
   sortColumn = null,
-  pagination,
   totalCount,
 }: TableProps<T>) => {
-  const router = useRouter();
-
   const { onChangePage, onChangePerPage, onSortColumn } = useTable<T>();
 
   return (
@@ -47,8 +40,6 @@ export const Table = <T,>({
         totalCount={totalCount}
         columns={columns}
         items={items}
-        page={pagination.page}
-        perPage={pagination.perPage}
         onChangePage={onChangePage}
         onChangePerPage={onChangePerPage}
         sortColumn={sortColumn}

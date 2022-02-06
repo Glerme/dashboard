@@ -9,8 +9,6 @@ type SSRTableProps<T> = {
   sortColumn?: SortColumn<T> | null;
   onSortColumn?: (sortColumn: SortColumn<T> | null) => void | null;
   getId: (item: T) => string;
-  page: number;
-  perPage: number;
   totalCount: number;
   onChangePage: (page: number) => void;
   onChangePerPage: (perPage: number) => void;
@@ -24,10 +22,6 @@ export const SSRTable = <T,>({
   items,
   sortColumn,
   onSortColumn,
-  page,
-  perPage,
-  onChangePage,
-  onChangePerPage,
   headerComponent,
   getId,
 }: SSRTableProps<T>) => {
@@ -44,13 +38,6 @@ export const SSRTable = <T,>({
         sortColumn={sortColumn}
         onSortColumn={onSortColumn}
         getId={getId}
-      />
-      <Pagination
-        page={page || 1}
-        perPage={perPage || 10}
-        totalCount={totalCount}
-        onChangePage={onChangePage}
-        onChangePerPage={onChangePerPage}
       />
     </section>
   );

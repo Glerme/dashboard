@@ -13,10 +13,12 @@ import { formSchema } from '../utils/editSchema';
 
 import { FormFooter } from 'components/Form/FormFooter';
 
+import styles from '../styles.module.scss';
+
 export const NewHomeView: React.FC = () => {
   const router = useRouter();
 
-  const { addLoading, data, handleNewData, loading, removeLoading } = useUser();
+  const { data, handleNewData } = useUser();
 
   const { errors, fields, resetForm, setFields, submitHandler } = useForm({
     name: '',
@@ -28,25 +30,17 @@ export const NewHomeView: React.FC = () => {
   const handleSubmit = submitHandler({
     validateSchema: formSchema,
     callback: async values => {
-      addLoading();
-
-      console.log(values);
-
-      handleNewData([
-        {
-          id: Number(
-            Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
-              .toString()
-              .slice(0, 3),
-          ),
-          city: values.city,
-          email: values.email,
-          name: values.name,
-          username: values.username,
-        },
-      ]);
-
-      removeLoading();
+      handleNewData({
+        id: Number(
+          Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
+            .toString()
+            .slice(0, 3),
+        ),
+        city: values.city,
+        email: values.email,
+        name: values.name,
+        username: values.username,
+      });
 
       router.back();
     },
@@ -55,7 +49,7 @@ export const NewHomeView: React.FC = () => {
 
   return (
     <>
-      <ViewTitle breadcrumb={{ items: [{ label: 'Dashboard' }] }} />
+      <ViewTitle breadcrumb={{ items: [{ label: 'New' }] }} />
       <ViewContainer>
         <Form
           onSubmit={handleSubmit}

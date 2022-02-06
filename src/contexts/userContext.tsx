@@ -13,38 +13,48 @@ export type UserContext = {
 };
 
 type FetchData = {
-  loading: boolean;
-  removeLoading: () => void;
-  addLoading: () => void;
-  handleNewData: (newData: User[]) => void;
+  handleNewData: (newData: User) => void;
+  handleAddArrayData: (newData: User[]) => void;
+  handleEditUser: (user: User) => void;
   data: User[] | null;
 };
 
 export const UserContext = createContext<FetchData>({} as FetchData);
 
 export const UserContextProvider: React.FC = ({ children }) => {
-  const [loading, setLoading] = useState(true);
   const [data, setNewdata] = useState<User[]>([]);
 
-  const addLoading = () => {
-    setLoading(true);
+  const handleAddArrayData = (newArrayData: User[]) => {
+    setNewdata(newArrayData);
   };
 
-  const removeLoading = () => {
-    setLoading(false);
+  const handleNewData = (newData: User) => {
+    setNewdata(old => [
+      ...old,
+      {
+        id: newData.id,
+        city: newData.city,
+        email: newData.email,
+        name: newData.name,
+        username: newData.username,
+      },
+    ]);
   };
 
-  const handleNewData = (newData: User[]) => {
-    const newObj = data.push(...newData);
+  const handleEditUser = (user: User) => {
+    const filtered = data.filter(filter => filter.id === user.id);
 
-    console.log(newObj);
-
-    setNewdata(data);
+    console.log(filtered);
   };
 
   return (
     <UserContext.Provider
-      value={{ loading, data, handleNewData, addLoading, removeLoading }}
+      value={{
+        data,
+        handleNewData,
+        handleAddArrayData,
+        handleEditUser,
+      }}
     >
       {children}
     </UserContext.Provider>

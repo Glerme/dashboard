@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { ViewTitle } from 'layouts/ViewTitle';
@@ -13,39 +14,53 @@ import { formSchema } from '../utils/editSchema';
 
 import { FormFooter } from 'components/Form/FormFooter';
 
-export const EditHomeView: React.FC = () => {
+type EditHomeViewProps = {
+  id: string;
+};
+
+export const EditHomeView: React.FC<EditHomeViewProps> = ({ id }) => {
   const router = useRouter();
 
-  const { addLoading, data, handleNewData, loading, removeLoading } = useUser();
+  const { data, handleEditUser } = useUser();
 
-  const { errors, fields, resetForm, setFields, submitHandler } = useForm({
+  const { errors, fields, setFields, submitHandler } = useForm({
     name: '',
     email: '',
     city: '',
     username: '',
   });
 
+  useEffect(() => {
+    const idFind = data.filter(user => user.id === +id);
+
+    idFind.map(user => {
+      setFields({
+        name: user.name,
+        city: user.city,
+        email: user.email,
+        username: user.username,
+      });
+    });
+  }, []);
+
   const handleSubmit = submitHandler({
     validateSchema: formSchema,
     callback: async values => {
-      addLoading();
-
       console.log(values);
 
-      // handleNewData([{
-      //   id: Math.random(),
-      //   city:
+      handleEditUser({
+        id: +id,
+        ...values,
+      });
 
-      // }]);
-
-      removeLoading();
+      router.back();
     },
     onError: () => {},
   });
 
   return (
     <>
-      <ViewTitle breadcrumb={{ items: [{ label: 'Dashboard' }] }} />
+      <ViewTitle breadcrumb={{ items: [{ label: 'Edit' }] }} />
       <ViewContainer>
         <Form
           onSubmit={handleSubmit}

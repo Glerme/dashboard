@@ -15,10 +15,13 @@ type HomeProps = {
 };
 
 const Home: NextPage<HomeProps> = ({ response }) => {
-  const { handleNewData } = useUser();
+  const { handleAddArrayData, data } = useUser();
 
   useEffect(() => {
-    handleNewData(response);
+    if (data.length === 0) {
+      handleAddArrayData(response);
+      return;
+    }
   }, [response]);
 
   return <ListHomeView />;

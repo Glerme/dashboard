@@ -54,7 +54,6 @@ export const ListHomeView: React.FC = () => {
           ]}
           items={data}
           getId={({ id }) => `${id}`}
-          pagination={{ page: 1, perPage: 10 }}
         />
       </ViewContainer>
     </>
