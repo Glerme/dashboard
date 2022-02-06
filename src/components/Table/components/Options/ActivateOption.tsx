@@ -1,24 +1,22 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { FiShield, FiShieldOff } from 'react-icons/fi';
 
 import { IconButton } from 'components/IconButton';
-// import { ModalConfirm } from 'components/Modal/ModalConfirm';
+import ConfirmModal, { ConfirmModalHandles } from 'components/ConfirmModal';
 
 type ActivateOptionProps = {
-  title?: string;
-  isActive: boolean;
+  title: string;
   onActivate: () => void;
 };
 
 export const ActivateOption: React.FC<ActivateOptionProps> = ({
   title,
-  isActive,
   onActivate,
 }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const modalRef = useRef<ConfirmModalHandles>(null);
 
-  const toggleActivate = async (isConfirmed: boolean) => {
-    setIsModalVisible(false);
+  const toggleActivate = async () => {
+    const isConfirmed = await modalRef.current?.openModal();
 
     if (isConfirmed) {
       onActivate();
@@ -27,22 +25,17 @@ export const ActivateOption: React.FC<ActivateOptionProps> = ({
 
   return (
     <>
-      {/* <ModalConfirm
-        isVisible={isModalVisible}
-        onClose={toggleActivate}
-        icon={isActive ? FiShieldOff : FiShield}
-        title={isActive ? 'Inativar' : 'Ativar'}
-        description={`Tem certeza que você deseja ${
-          isActive ? 'inativar' : 'ativar'
-        }  este registro?`}
-      /> */}
+      <ConfirmModal
+        ref={modalRef}
+        icon={FiShield}
+        title={'Delete'}
+        description={`Are you sure you want delete this register?`}
+      />
       <IconButton
-        icon={() =>
-          isActive ? <FiShield size={24} /> : <FiShieldOff size={24} />
-        }
-        title={title ? title : 'Ativar / Inativar'}
+        icon={() => <FiShield size={24} />}
+        title={title ? title : 'Delet'}
         className="hover-red"
-        onClick={() => setIsModalVisible(true)}
+        onClick={toggleActivate}
       />
     </>
   );

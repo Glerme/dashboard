@@ -4,7 +4,10 @@ import { FiEdit } from 'react-icons/fi';
 
 import { Table } from 'components/Table';
 import { IconLink } from 'components/IconLink';
-import { OptionList } from 'components/Table/components/Options';
+import {
+  ActivateOption,
+  OptionList,
+} from 'components/Table/components/Options';
 
 import { useUser } from 'hooks/useUser';
 
@@ -14,9 +17,7 @@ import { ViewContainer } from 'layouts/ViewContainer';
 import styles from '../styles.module.scss';
 
 export const ListHomeView: React.FC = () => {
-  const { data, loading } = useUser();
-
-  console.log(data);
+  const { data, activateUser } = useUser();
 
   return (
     <>
@@ -31,17 +32,21 @@ export const ListHomeView: React.FC = () => {
       <ViewContainer>
         <Table
           title="User List"
-          totalCount={data?.length || 10}
+          totalCount={data?.length}
           columns={[
             {
               label: 'Options',
               key: 'options',
-              render: ({ id }) => (
+              render: ({ id, active }) => (
                 <OptionList>
                   <IconLink
                     title="Edit"
                     href={`/${id}`}
                     icon={() => <FiEdit size={24} />}
+                  />
+                  <ActivateOption
+                    title="Delete"
+                    onActivate={() => activateUser(id, active)}
                   />
                 </OptionList>
               ),
@@ -51,8 +56,9 @@ export const ListHomeView: React.FC = () => {
             { label: 'Username', key: 'username', sortable: true },
             { label: 'Email', key: 'email', sortable: true },
             { label: 'City', key: 'city', sortable: true },
+            { label: 'Active', key: 'active', sortable: true },
           ]}
-          items={data}
+          items={[]}
           getId={({ id }) => `${id}`}
         />
       </ViewContainer>

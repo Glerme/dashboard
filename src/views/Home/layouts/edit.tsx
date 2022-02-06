@@ -41,15 +41,14 @@ export const EditHomeView: React.FC<EditHomeViewProps> = ({ id }) => {
         username: user.username,
       });
     });
-  }, []);
+  }, [data]);
 
   const handleSubmit = submitHandler({
     validateSchema: formSchema,
     callback: async values => {
-      console.log(values);
-
       handleEditUser({
         id: +id,
+        active: true,
         ...values,
       });
 

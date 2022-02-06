@@ -1,13 +1,9 @@
-import { useRouter } from 'next/router';
-
 import _ from 'lodash';
 
 import { useTable } from './hooks/useTable';
 
 import { SSRTable } from './components/SSRTable';
 import { Column, SortColumn } from './components/BasicTable';
-
-import styles from './styles.module.scss';
 
 type TableProps<T> = {
   title: string;

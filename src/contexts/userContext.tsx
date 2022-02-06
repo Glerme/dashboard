@@ -6,6 +6,7 @@ export type User = {
   username: string;
   email: string;
   city: string;
+  active: boolean;
 };
 
 export type UserContext = {
@@ -16,6 +17,7 @@ type FetchData = {
   handleNewData: (newData: User) => void;
   handleAddArrayData: (newData: User[]) => void;
   handleEditUser: (user: User) => void;
+  activateUser: (id: number, active: boolean) => void;
   data: User[] | null;
 };
 
@@ -37,14 +39,26 @@ export const UserContextProvider: React.FC = ({ children }) => {
         email: newData.email,
         name: newData.name,
         username: newData.username,
+        active: true,
       },
     ]);
   };
 
   const handleEditUser = (user: User) => {
-    const filtered = data.filter(filter => filter.id === user.id);
+    const arr = data.filter(item => item.id !== user.id);
 
-    console.log(filtered);
+    setNewdata([...arr, user]);
+  };
+
+  const activateUser = (id: number, active: boolean) => {
+    const arr = data.filter(item => item.id !== id);
+
+    arr.map(user => ({
+      ...user,
+      active: !active,
+    }));
+
+    setNewdata([...arr]);
   };
 
   return (
@@ -54,6 +68,7 @@ export const UserContextProvider: React.FC = ({ children }) => {
         handleNewData,
         handleAddArrayData,
         handleEditUser,
+        activateUser,
       }}
     >
       {children}

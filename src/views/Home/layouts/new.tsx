@@ -40,6 +40,7 @@ export const NewHomeView: React.FC = () => {
         email: values.email,
         name: values.name,
         username: values.username,
+        active: true,
       });
 
       router.back();

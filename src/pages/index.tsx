@@ -22,7 +22,9 @@ const Home: NextPage<HomeProps> = ({ response }) => {
       handleAddArrayData(response);
       return;
     }
-  }, [response]);
+
+    handleAddArrayData(data);
+  }, [response, data]);
 
   return <ListHomeView />;
 };
@@ -38,10 +40,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     username: user.username,
     email: user.email,
     city: user.address.city,
+    active: true,
   }));
 
   if (response.error) {
-    console.log('Ocorreu um errro');
+    console.log('Error');
 
     return {
       props: {},

@@ -27,7 +27,7 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // Você pode renderizar qualquer UI alternativa
-      return <h1>Algo deu errado.</h1>;
+      return <h1>Opss... Something is wrong</h1>;
     }
 
     return this.props.children;
