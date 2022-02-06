@@ -58,7 +58,7 @@ export const ListHomeView: React.FC = () => {
             { label: 'City', key: 'city', sortable: true },
             { label: 'Active', key: 'active', sortable: true },
           ]}
-          items={[]}
+          items={data}
           getId={({ id }) => `${id}`}
         />
       </ViewContainer>
