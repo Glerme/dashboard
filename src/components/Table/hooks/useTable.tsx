@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { SortColumn } from '../components/BasicTable';
 
 const isNullable = (value: any) => value == null;
 const isEmptyString = (value: any) => typeof value === 'string' && value === '';
@@ -31,19 +30,7 @@ export const useTable = <T,>() => {
         query: { ...router.query, perPage },
       });
     },
-    onSortColumn: (sortColumn: SortColumn<T>) => {
-      const { field, order, ...query } = router.query;
 
-      router.push({
-        pathname: router.pathname,
-        query: {
-          ...query,
-          ...(sortColumn
-            ? { field: sortColumn.field as string, order: sortColumn.order }
-            : {}),
-        },
-      });
-    },
     onFilter: (filter: Record<string, any>) => {
       const query = Object.fromEntries(
         Object.entries(router.query || {}).filter(

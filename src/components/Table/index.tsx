@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-import { useTable } from './hooks/useTable';
-
 import { SSRTable } from './components/SSRTable';
 import { Column } from './components/BasicTable';
 
