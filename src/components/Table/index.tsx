@@ -3,19 +3,13 @@ import _ from 'lodash';
 import { useTable } from './hooks/useTable';
 
 import { SSRTable } from './components/SSRTable';
-import { Column, SortColumn } from './components/BasicTable';
+import { Column } from './components/BasicTable';
 
 type TableProps<T> = {
   title: string;
   totalCount: number;
   items: T[];
   columns: Column<T>[];
-  sortColumn?: SortColumn<T> | null;
-  filterComponent?: (props: {
-    onFilter: (filter: Record<string, any>) => void;
-    onCancel: () => void;
-  }) => JSX.Element;
-  headerComponent?: () => JSX.Element;
   getId: (item: T) => string;
 };
 
@@ -24,11 +18,8 @@ export const Table = <T,>({
   columns,
   items,
   getId,
-  sortColumn = null,
   totalCount,
 }: TableProps<T>) => {
-  const { onChangePage, onChangePerPage, onSortColumn } = useTable<T>();
-
   return (
     <>
       <SSRTable
@@ -36,10 +27,6 @@ export const Table = <T,>({
         totalCount={totalCount}
         columns={columns}
         items={items}
-        onChangePage={onChangePage}
-        onChangePerPage={onChangePerPage}
-        sortColumn={sortColumn}
-        onSortColumn={onSortColumn}
         getId={getId}
       />
     </>

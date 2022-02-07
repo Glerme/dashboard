@@ -51,12 +51,11 @@ export const ListHomeView: React.FC = () => {
                 </OptionList>
               ),
             },
-            { label: 'ID', key: 'id', sortable: true },
-            { label: 'Name', key: 'name', sortable: true },
-            { label: 'Username', key: 'username', sortable: true },
-            { label: 'Email', key: 'email', sortable: true },
-            { label: 'City', key: 'city', sortable: true },
-            { label: 'Active', key: 'active', sortable: true },
+            { label: 'ID', key: 'id', sortable: false },
+            { label: 'Name', key: 'name', sortable: false },
+            { label: 'Username', key: 'username', sortable: false },
+            { label: 'Email', key: 'email', sortable: false },
+            { label: 'City', key: 'city', sortable: false },
           ]}
           items={data}
           getId={({ id }) => `${id}`}

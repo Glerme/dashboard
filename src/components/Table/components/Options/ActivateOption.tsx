@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { FiShield, FiShieldOff } from 'react-icons/fi';
+import { FiShield } from 'react-icons/fi';
 
 import { IconButton } from 'components/IconButton';
 import ConfirmModal, { ConfirmModalHandles } from 'components/ConfirmModal';
